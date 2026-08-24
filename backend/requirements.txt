@@ -1,0 +1,12 @@
+flask
+flask-cors
+requests
+beautifulsoup4
+dnspython
+python-whois
+tldextract
+pandas
+numpy
+scikit-learn
+cloudpickle
+gunicorn
