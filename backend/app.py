@@ -18,7 +18,7 @@ from flask_cors import CORS
 import cloudpickle
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://prismatic-platypus-138535.netlify.app"])
 
 # ------------------------------------------------------------
 # 1. Paths to model files
@@ -307,7 +307,7 @@ def predict_with_imputation(url, model, n_imputations=20):
 # ------------------------------------------------------------
 # 4. Routes
 # ------------------------------------------------------------
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['OPTIONS', 'POST'])
 def predict():
     data = request.get_json(silent=True) or {}
     url = (data.get('url') or '').strip()
