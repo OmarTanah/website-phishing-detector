@@ -307,7 +307,15 @@ def predict_with_imputation(url, model, n_imputations=20):
 # ------------------------------------------------------------
 # 4. Routes
 # ------------------------------------------------------------
-@app.route('/predict', methods=['OPTIONS', 'POST'])
+@app.route('/predict', methods=['OPTIONS'])
+def handle_options():
+    response = jsonify({})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
+    return response, 200
+
+@app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json(silent=True) or {}
     url = (data.get('url') or '').strip()
