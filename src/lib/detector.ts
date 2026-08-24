@@ -4,12 +4,14 @@ export interface PredictionResponse {
   prediction: Verdict;
   probabilities: { legitimate: number; phishing: number };
   confidence: number;
-  source?: string;          // 'ml_model' or 'heuristic'
+  source?: string;
   features?: Record<string, number>;
 }
 
+const API_ENDPOINT = 'https://website-phishing-detector-3wbz.onrender.com/predict';
+
 export async function checkUrl(url: string): Promise<PredictionResponse> {
-  const response = await fetch('http://localhost:5000/predict', {
+  const response = await fetch(API_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ url }),
@@ -21,9 +23,6 @@ export async function checkUrl(url: string): Promise<PredictionResponse> {
   }
 
   const data = await response.json();
-  
-  // The backend already returns the correct prediction, probabilities, and confidence.
-  // We just need to format it to match the frontend's expected type.
   return {
     prediction: data.prediction as Verdict,
     probabilities: data.probabilities,
@@ -33,14 +32,11 @@ export async function checkUrl(url: string): Promise<PredictionResponse> {
   };
 }
 
-// If you want to keep the heuristic as a fallback (only when API fails):
 export async function checkUrlWithFallback(url: string): Promise<PredictionResponse> {
   try {
     return await checkUrl(url);
   } catch (error) {
     console.warn('API failed, using client‑side heuristic fallback:', error);
-    // You could optionally implement a simple heuristic here,
-    // but ideally you'd just show an error to the user.
     throw new Error('Unable to reach the prediction service. Please try again later.');
   }
 }
