@@ -311,7 +311,7 @@ def predict_with_imputation(url, model, n_imputations=20):
 def handle_options():
     response = jsonify({})
     response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization, apikey")
     response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
     return response, 200
 
