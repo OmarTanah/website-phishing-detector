@@ -18,7 +18,7 @@ from flask_cors import CORS
 import cloudpickle
 
 app = Flask(__name__)
-CORS(app, origins=["https://prismatic-platypus-138535.netlify.app"])
+CORS(app, origins="*")
 
 # ------------------------------------------------------------
 # 1. Paths to model files
