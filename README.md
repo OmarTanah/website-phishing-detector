@@ -2,7 +2,7 @@
 
 A machine learning-powered web application that detects phishing websites by analyzing 30 URL features. Built with React + TypeScript (frontend) and Flask + scikit-learn (backend).
 
-🔗 **Live Demo**: [your-netlify-url.netlify.app](https://your-netlify-url.netlify.app) (replace with your actual URL after deployment)
+🔗 **Live Demo**: [Phishing Website Detector](https://prismatic-platypus-138535.netlify.app)
 
 ---
 
