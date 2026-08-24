@@ -6,7 +6,7 @@ export type { PredictionResponse };
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const API_ENDPOINT = 'https://website-phishing-detector-3wbz.onrender.com';
+const API_ENDPOINT = 'https://website-phishing-detector-3wbz.onrender.com/predict';
 
 const SAMPLES = [
   "https://www.google.com",
